@@ -63,15 +63,20 @@
 
   /* Logo stage: the whole first screen is the animated mark */
   .logo-stage { min-height: calc(100svh - 82px - env(safe-area-inset-top, 0px)); place-items: center; position: relative; margin-top: -3.5rem; }
+  /* Home (Logan, 2026-11-17): the animated mark, then the headline, the tagline and one link into Services, all on the first screen. */
+  .home-intro { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.75rem; padding: 1rem 0 2.5rem; }
+  .home-logo { position: relative; display: grid; place-items: center; }
+  .home-text { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .home-text h1 { font-size: clamp(2.6rem, 8vw, 4.4rem); }
+  .home-text .tagline { font-size: 1.25rem; font-weight: 500; color: var(--fg); line-height: 1.35; margin: 0; }
+  .home-text .actions { margin-top: .25rem; }
   /* The mark's resting state is fully drawn and visible; the intro animations only hide it during their own delay (fill-mode both).
      So a browser that skips CSS animation (in-app browsers, link previews, a paused tab) still shows the whole logo.
      Kept deliberately plain for Safari: literal lengths and colours, no SVG mask, no variables inside keyframes. */
-  .logo { width: min(46vw, 260px); height: auto; display: block; position: relative; z-index: 1; filter: drop-shadow(0 0 18px rgba(127,166,224,.35)); will-change: transform; }
-  .logo-stage::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(90vw, 620px); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; will-change: transform, opacity;
+  .logo { width: min(40vw, 220px); height: auto; display: block; position: relative; z-index: 1; filter: drop-shadow(0 0 18px rgba(127,166,224,.35)); will-change: transform; }
+  .home-logo::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(90vw, 620px); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; will-change: transform, opacity;
     background: radial-gradient(circle, rgba(127,166,224,.38) 0%, rgba(127,166,224,.16) 28%, rgba(43,76,126,.08) 48%, transparent 68%); animation: glowin 2s ease 1s both; }
   @keyframes glowin { from { opacity: 0; } to { opacity: 1; } }
-  .scroll-cue { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); color: var(--fg-2); padding: .5rem; border-radius: 999px; animation: fadein .8s ease 2.6s both; }
-  .scroll-cue:hover { color: var(--fg); background: var(--bg-2); }
   @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
   @media (prefers-reduced-motion: no-preference) {
     /* Orbit monogram: the white M draws, the blue V (truth) draws into it, the orbit draws, then the blue node travels it */
@@ -83,9 +88,9 @@
     .mv-halo { animation: fadein .7s ease 1.9s both; }
     .mv-breathe { animation: vglow 5s ease-in-out infinite; }
     .mv-node { animation: fadein .7s ease 2.3s both; }
-    .scroll-cue svg { animation: bob 2s ease-in-out infinite; }
     .logo { animation: float 7s ease-in-out 3s infinite; }
-    .logo-stage::before { animation: glowin 2s ease 1s both, pulse 7s ease-in-out 3s infinite; }
+    .home-logo::before { animation: glowin 2s ease 1s both, pulse 7s ease-in-out 3s infinite; }
+    .home-text { animation: fadein .8s ease 2.6s both; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
     @keyframes pulse { 0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 50% { opacity: .8; transform: translate(-50%, -50%) scale(1.06); } }
     @keyframes draw-m { from { stroke-dashoffset: 350; } to { stroke-dashoffset: 0; } }
@@ -93,9 +98,8 @@
     @keyframes draw-orbit { from { stroke-dashoffset: 412; } to { stroke-dashoffset: 0; } }
     @keyframes draw-front { from { stroke-dashoffset: 206; } to { stroke-dashoffset: 0; } }
     @keyframes vglow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
-    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
   }
-  @media (prefers-reduced-motion: reduce) { .scroll-cue, .logo-stage::before { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .home-logo::before, .home-text { animation: none; } }
 
   /* Pages: one view at a time, chosen by the URL hash */
   .page { display: none; }
@@ -222,6 +226,8 @@
   <section id="home" class="page logo-stage" aria-label="Noodle Mind">
     <!-- Logo: Orbit monogram (option 05, chosen by Logan 2026-11-10). PLACEHOLDER: the Mentis Veritas Orbit monogram is reused until a Noodle Mind mark is designed. Original: an M for Mentis whose middle is a blue V for Veritas,
          with one tilted orbit and a blue node. Where the front of the orbit crosses the M's right leg, a thin black stroke clipped to the leg makes the gap. Header mark and favicon use the M alone. -->
+    <div class="home-intro">
+    <div class="home-logo">
     <svg class="logo" viewBox="0 0 200 200" role="img" aria-labelledby="logo-title">
       <title id="logo-title">Noodle Mind</title>
       <defs>
@@ -241,9 +247,13 @@
       <g transform="rotate(-18 100 100)"><path class="mv-draw mv-front" d="M8 100 A92 30 0 0 0 192 100" fill="none" stroke="#ffffff" stroke-opacity=".7" stroke-width="1.5"/></g>
       <g class="mv-node" clip-path="url(#mv-front-half)"><g transform="rotate(-18 100 100)"><circle r="5" fill="#7fa6e0"><animateMotion dur="9s" repeatCount="indefinite" path="M8 100 A92 30 0 1 1 192 100 A92 30 0 1 1 8 100"/></circle></g></g>
     </svg>
-    <a class="scroll-cue" href="#services" aria-label="Enter the site">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+    </div>
+    <div class="home-text">
+      <h1>Use Your Noodle.</h1>
+      <p class="tagline">High IQ, powered by AI.</p>
+      <div class="actions"><a class="btn primary" href="#services">See what we do</a></div>
+    </div>
+    </div>
   </section>
 
   <section id="services" class="page" aria-labelledby="services-h">
