@@ -15,19 +15,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Build and deploy are separate jobs (the GitHub Pages template layout), so the artifact is fully
+  # registered before deploy-pages looks for it. The single-job layout failed twice on 2026-11-19 with
+  # "No artifacts named github-pages were found" right after a successful upload.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Configure Pages (enables Pages if it is not yet enabled)
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
       - id: deployment
         uses: actions/deploy-pages@v4
