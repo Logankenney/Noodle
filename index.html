@@ -401,7 +401,7 @@
       ];
 
       // The noodle: a head that wanders inside the sphere, and a body that follows it link by link. It starts above, out of view.
-      var N = 340, SEG = R * 0.034, body = [], head = { p: [0, -R * 2.6, 0], v: [0, 0, 0] }, phase = 'wait', landed = 0, inside = false;
+      var N = 600, SEG = R * 0.034, body = [], head = { p: [0, -R * 2.6, 0], v: [0, 0, 0] }, phase = 'wait', landed = 0, inside = false;
       for (var i = 0; i < N; i++) body.push([0, -R * 2.6 - i * SEG, 0]);
       var DROP_AT = 2700, TEXT_AT = 3400;
       function stepNoodle(t, dt) {
@@ -414,7 +414,7 @@
           var tail = body[N - 1], k = 0.0004 * dt, g = 0.0016 * dt, tt = t * 0.0005;
           var rx = Math.sin(tt) * RIN * 0.8, ry = Math.sin(tt * 1.3 + 1) * RIN * 0.8, rz = Math.cos(tt * 0.8) * RIN * 0.8;
           v[0] += (tail[0] - p[0]) * k + (rx - p[0]) * g + Math.sin(t * 0.0021 + 1) * 0.14; v[1] += (tail[1] - p[1]) * k + (ry - p[1]) * g + Math.cos(t * 0.0017) * 0.14; v[2] += (tail[2] - p[2]) * k + (rz - p[2]) * g + Math.sin(t * 0.0019 + 2) * 0.14;
-          var sp = Math.sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]) || 1, want = 3.1 * dt; v[0] *= want / sp; v[1] *= want / sp; v[2] *= want / sp;
+          var sp = Math.sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]) || 1, want = (3.1 + 3.6 * Math.max(0, 1 - (t - landed) / 9000)) * dt; // pours in fast, then settles v[0] *= want / sp; v[1] *= want / sp; v[2] *= want / sp;
         }
         p[0] += v[0]; p[1] += v[1]; p[2] += v[2];
         var d = Math.sqrt(p[0]*p[0]+p[1]*p[1]+p[2]*p[2]);
@@ -461,7 +461,7 @@
           var segs = [], prev = null;
           for (var i = 0; i < N; i++) { var q = project(body[i], cy, sy, cx, sx); if (prev) segs.push({ a: prev, b: q, z: (prev.z + q.z) / 2, i: i }); prev = q; }
           segs.sort(function (a, b) { return a.z - b.z; });
-          for (var i = 0; i < segs.length; i++) { var g = segs[i], depth = Math.max(0, Math.min(1, (g.z + 1) / 2)), w = 14 * (0.55 + depth * 0.6);
+          for (var i = 0; i < segs.length; i++) { var g = segs[i], depth = Math.max(0, Math.min(1, (g.z + 1) / 2)), w = 13 * (0.55 + depth * 0.6);
             var j1 = jitter[g.i % 64], j2 = jitter[(g.i + 1) % 64];
             for (var pass = 0; pass < 2; pass++) { ctx.beginPath();
               ctx.moveTo(g.a.x + j1[0] * (pass ? 2.4 : 0.8), g.a.y + j1[1] * (pass ? 2.4 : 0.8)); ctx.lineTo(g.b.x + j2[0] * (pass ? 2.4 : 0.8), g.b.y + j2[1] * (pass ? 2.4 : 0.8));
