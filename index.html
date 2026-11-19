@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Noodle Mind. High IQ, powered by AI. We think with you about where AI belongs, and we build bespoke LLM systems to make it work.">
+<meta name="description" content="Noodle Mind is an AI that takes your idea and makes it better. Bring a rough idea. Leave with a sharper one.">
 <title>Noodle Mind</title>
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#fff7e8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:SOFT,opsz,wght@100,9..144,500;100,9..144,600;100,9..144,700&family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  /* Black, open, unboxed. One accent (blue) for the mark, labels and highlights; no cards or frames, just type, hairlines and space. */
+  /* Light, warm, playful (Logan, 2026-11-19). Cream ground, ink navy, pasta-gold accent, tomato for small highlights; still no cards or frames. */
   :root {
-    --bg: #000000; --bg-2: #111113; --card: #161618; --fg: #ffffff; --fg-2: #d0d0d5; --rule: #2e2e33;
-    --accent: #7fa6e0; --accent-soft: #14213a; --accent-ink: #000000;
-    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.5);
-    --r: 14px; color-scheme: dark;
+    --bg: #fff7e8; --bg-2: #fdeed2; --card: #fdeed2; --fg: #1f1b3d; --fg-2: #5a5577; --rule: rgba(31,27,61,.14);
+    --accent: #e9a21c; --accent-2: #f26a4b; --accent-soft: #fde7b3; --accent-ink: #1f1b3d; --space: #1b1a4a;
+    --shadow: none;
+    --r: 14px; color-scheme: light;
     --display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-    --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    --body: "Nunito", "Segoe UI", Helvetica, Arial, sans-serif;
     --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   }
   * { box-sizing: border-box; }
@@ -30,7 +30,7 @@
   .wrap { max-width: 78ch; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
 
   /* Header: a thin, translucent bar; small mark at left, evenly spaced small text links, one quiet icon at right. Static on every screen size. */
-  .site-header { position: sticky; top: 0; z-index: 10; background: rgba(0,0,0,.8); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); padding-top: env(safe-area-inset-top, 0px); }
+  .site-header { position: sticky; top: 0; z-index: 10; background: rgba(255,247,232,.82); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); padding-top: env(safe-area-inset-top, 0px); }
   .site-header .wrap { max-width: 1024px; height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 0; }
   .brand { display: flex; align-items: center; text-decoration: none; opacity: .9; }
   .brand:hover { opacity: 1; }
@@ -53,9 +53,9 @@
   main { display: flex; flex-direction: column; padding-block: 3.5rem 4.5rem; }
   section > .wrap { display: flex; flex-direction: column; gap: 1.5rem; }
   .eyebrow { font-family: var(--body); font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 0; }
-  h1 { font-family: var(--display); font-weight: 300; font-size: clamp(3rem, 9vw, 5.2rem); line-height: 1; letter-spacing: -.015em; margin: 0; text-wrap: balance; font-variation-settings: "opsz" 144; }
-  h2 { font-family: var(--display); font-weight: 400; font-size: clamp(1.75rem, 4vw, 2.4rem); line-height: 1.15; margin: 0; text-wrap: balance; letter-spacing: -.005em; }
-  h3 { font-family: var(--display); font-weight: 500; font-size: 1.2rem; line-height: 1.3; margin: 0; }
+  h1 { font-family: var(--display); font-weight: 600; font-variation-settings: "opsz" 144, "SOFT" 100; font-size: clamp(3rem, 9vw, 5.2rem); line-height: 1; letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+  h2 { font-family: var(--display); font-weight: 600; font-variation-settings: "SOFT" 100; font-size: clamp(1.75rem, 4vw, 2.4rem); line-height: 1.15; margin: 0; text-wrap: balance; letter-spacing: -.005em; }
+  h3 { font-family: var(--display); font-weight: 600; font-variation-settings: "SOFT" 100; font-size: 1.2rem; line-height: 1.3; margin: 0; }
   p { margin: 0; }
   .lede { font-size: 1.2rem; color: var(--fg-2); max-width: 60ch; }
   .lede strong { color: var(--fg); font-weight: 500; display: block; margin-bottom: .5rem; font-size: 1.25rem; line-height: 1.35; }
@@ -70,34 +70,18 @@
   .home-text h1 { font-size: clamp(2.6rem, 8vw, 4.4rem); }
   .home-text .tagline { font-size: 1.25rem; font-weight: 500; color: var(--fg); line-height: 1.35; margin: 0; }
   .home-text .actions { margin-top: .25rem; }
-  /* The mark's resting state is fully drawn and visible; the intro animations only hide it during their own delay (fill-mode both).
-     So a browser that skips CSS animation (in-app browsers, link previews, a paused tab) still shows the whole logo.
-     Kept deliberately plain for Safari: literal lengths and colours, no SVG mask, no variables inside keyframes. */
-  .logo { width: min(40vw, 220px); height: auto; display: block; position: relative; z-index: 1; filter: drop-shadow(0 0 18px rgba(127,166,224,.35)); will-change: transform; }
-  .home-logo::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(90vw, 620px); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; will-change: transform, opacity;
-    background: radial-gradient(circle, rgba(127,166,224,.38) 0%, rgba(127,166,224,.16) 28%, rgba(43,76,126,.08) 48%, transparent 68%); animation: glowin 2s ease 1s both; }
+  /* Logo (Logan, 2026-11-19): a ball of spaghetti turning slowly in a small round window of space. Canvas-drawn; a static frame under reduced motion. */
+  .logo { width: min(62vw, 300px); height: auto; aspect-ratio: 1; display: block; position: relative; z-index: 1; border-radius: 50%; background: var(--space); will-change: transform; }
+  .home-logo::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(96vw, 560px); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; will-change: transform, opacity;
+    background: radial-gradient(circle, rgba(233,162,28,.32) 0%, rgba(233,162,28,.14) 30%, rgba(242,106,75,.06) 48%, transparent 68%); animation: glowin 2s ease .4s both; }
   @keyframes glowin { from { opacity: 0; } to { opacity: 1; } }
   @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
   @media (prefers-reduced-motion: no-preference) {
-    /* Orbit monogram: the white M draws, the blue V (truth) draws into it, the orbit draws, then the blue node travels it */
-    .mv-draw { animation: 1.4s cubic-bezier(.4,0,.2,1) both; }
-    .mv-m { stroke-dasharray: 350 350; animation-name: draw-m; }
-    .mv-v { stroke-dasharray: 165 165; animation-name: draw-v; animation-delay: 1.1s; }
-    .mv-orbit { stroke-dasharray: 412 412; animation-name: draw-orbit; animation-delay: 1.4s; }
-    .mv-front { stroke-dasharray: 206 206; animation-name: draw-front; animation-delay: 1.6s; }
-    .mv-halo { animation: fadein .7s ease 1.9s both; }
-    .mv-breathe { animation: vglow 5s ease-in-out infinite; }
-    .mv-node { animation: fadein .7s ease 2.3s both; }
-    .logo { animation: float 7s ease-in-out 3s infinite; }
-    .home-logo::before { animation: glowin 2s ease 1s both, pulse 7s ease-in-out 3s infinite; }
-    .home-text { animation: fadein .8s ease 2.6s both; }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .logo { animation: float 7s ease-in-out 1s infinite; }
+    .home-logo::before { animation: glowin 2s ease .4s both, pulse 7s ease-in-out 2s infinite; }
+    .home-text { animation: fadein .8s ease 1.2s both; }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
     @keyframes pulse { 0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 50% { opacity: .8; transform: translate(-50%, -50%) scale(1.06); } }
-    @keyframes draw-m { from { stroke-dashoffset: 350; } to { stroke-dashoffset: 0; } }
-    @keyframes draw-v { from { stroke-dashoffset: 165; } to { stroke-dashoffset: 0; } }
-    @keyframes draw-orbit { from { stroke-dashoffset: 412; } to { stroke-dashoffset: 0; } }
-    @keyframes draw-front { from { stroke-dashoffset: 206; } to { stroke-dashoffset: 0; } }
-    @keyframes vglow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
   }
   @media (prefers-reduced-motion: reduce) { .home-logo::before, .home-text { animation: none; } }
 
@@ -132,11 +116,11 @@
   /* Floating buttons and tabs: bare text, no fill or frame; a blue backlight glow when hovered, focused or active. */
   .btn, .tabs button { position: relative; isolation: isolate; font: 500 1rem var(--body); text-decoration: none; padding: .7rem 1.25rem; border-radius: 999px; border: 0; background: transparent; color: var(--fg); cursor: pointer; transition: transform .18s ease, text-shadow .18s ease, color .18s ease, opacity .18s ease; opacity: .85; }
   /* The haze: a blurred blue cloud floating behind the text, no edge, only visible on highlight */
-  .btn::before { content: ""; position: absolute; inset: -40% -22%; z-index: -1; border-radius: 999px; background: radial-gradient(ellipse at center, rgba(127,166,224,.55) 0%, rgba(127,166,224,.22) 45%, transparent 72%); filter: blur(10px); opacity: 0; transform: scale(.85); transition: opacity .22s ease, transform .22s ease; pointer-events: none; }
+  .btn::before { content: ""; position: absolute; inset: -40% -22%; z-index: -1; border-radius: 999px; background: radial-gradient(ellipse at center, rgba(233,162,28,.5) 0%, rgba(233,162,28,.2) 45%, transparent 72%); filter: blur(10px); opacity: 0; transform: scale(.85); transition: opacity .22s ease, transform .22s ease; pointer-events: none; }
   .btn:hover::before, .btn:focus-visible::before { opacity: 1; transform: scale(1); }
-  .btn:hover, .btn:focus-visible { transform: translateY(-1px); color: #fff; opacity: 1; text-shadow: 0 0 10px rgba(127,166,224,.8), 0 0 24px rgba(127,166,224,.45); }
-  .btn.primary { color: var(--accent); opacity: 1; }
-  .btn.primary:hover, .btn.primary:focus-visible { color: #fff; }
+  .btn:hover, .btn:focus-visible { transform: translateY(-1px); color: var(--fg); opacity: 1; text-shadow: 0 0 10px rgba(233,162,28,.55), 0 0 24px rgba(233,162,28,.3); }
+  .btn.primary { color: var(--accent-2); opacity: 1; font-weight: 700; }
+  .btn.primary:hover, .btn.primary:focus-visible { color: var(--accent-2); }
   .btn:active, .tabs button:active { transform: translateY(0); }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   .btn:focus-visible, .tabs button:focus-visible { outline: none; }
@@ -156,8 +140,8 @@
   /* Tables: open, hairline rows, no card */
   .table-wrap { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-size: 1.02rem; }
-  th, td { text-align: left; vertical-align: top; padding: 1rem 1rem 1rem 0; border-bottom: 1px solid rgba(255,255,255,.12); }
-  tbody tr:last-child td { border-bottom: 1px solid rgba(255,255,255,.12); }
+  th, td { text-align: left; vertical-align: top; padding: 1rem 1rem 1rem 0; border-bottom: 1px solid var(--rule); }
+  tbody tr:last-child td { border-bottom: 1px solid var(--rule); }
   
   th { font-family: var(--body); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
   td strong { font-weight: 600; }
@@ -177,8 +161,8 @@
 
   /* FAQ */
   .faq-list { display: grid; gap: 0; max-width: 44rem; margin: 0 auto; }
-  details { border-bottom: 1px solid rgba(255,255,255,.12); padding: 0; }
-  details:first-of-type { border-top: 1px solid rgba(255,255,255,.12); }
+  details { border-bottom: 1px solid var(--rule); padding: 0; }
+  details:first-of-type { border-top: 1px solid var(--rule); }
   summary { cursor: pointer; padding: 1.1rem 0; font-weight: 500; font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
   summary::-webkit-details-marker { display: none; }
   summary::after { content: "+"; color: var(--accent); font-weight: 500; font-size: 1.2rem; line-height: 1; }
@@ -188,7 +172,7 @@
   /* Contact */
   .status { padding: clamp(1rem, 4vw, 2rem) 0; display: flex; flex-direction: column; gap: 1.1rem; }
   .contact { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
-  .contact code { font-family: var(--mono); font-size: 1.05rem; color: #fff; background: none; border: 0; padding: .7rem .5rem; user-select: all; }
+  .contact code { font-family: var(--mono); font-size: 1.05rem; color: var(--fg); background: none; border: 0; padding: .7rem .5rem; user-select: all; }
   .note { font-size: 1rem; color: var(--fg-2); }
 
   footer { padding-block: 1.75rem 3rem; font-size: .9rem; color: var(--fg-2); }
@@ -204,18 +188,23 @@
   <div class="wrap">
     <a class="brand" href="#home" aria-label="Noodle Mind home">
       <svg class="mark" viewBox="0 0 200 200" aria-hidden="true">
-        <defs><clipPath id="mv-v-small"><rect x="56" y="0" width="88" height="200"/></clipPath></defs>
-        <path d="M46 158 V46 L100 128 L154 46 V158" fill="none" stroke="#ffffff" stroke-width="20" stroke-miterlimit="6"/>
-        <path clip-path="url(#mv-v-small)" d="M46 158 V46 L100 128 L154 46 V158" fill="none" stroke="#7fa6e0" stroke-width="21" stroke-miterlimit="6"/>
+        <circle cx="100" cy="100" r="100" fill="#1b1a4a"/>
+        <g fill="none" stroke="#f2b640" stroke-width="12" stroke-linecap="round">
+          <ellipse cx="100" cy="100" rx="56" ry="30" transform="rotate(-30 100 100)"/>
+          <ellipse cx="100" cy="100" rx="56" ry="30" transform="rotate(35 100 100)" stroke-opacity=".85"/>
+          <ellipse cx="100" cy="100" rx="56" ry="30" transform="rotate(95 100 100)" stroke-opacity=".7"/>
+          <path d="M62 86 C80 60 128 64 140 104"/>
+        </g>
+        <circle cx="156" cy="46" r="5" fill="#fff7e8"/><circle cx="38" cy="154" r="3" fill="#fff7e8" fill-opacity=".8"/><circle cx="164" cy="156" r="3.5" fill="#fff7e8" fill-opacity=".8"/>
       </svg>
       <span class="brand-name">Noodle Mind</span>
     </a>
     <nav class="primary" id="primary-nav" aria-label="Sections">
-      <a href="#services">Services</a>
-      <a href="#process">How we work</a>
+      <a href="#services">What it does</a>
+      <a href="#process">How it works</a>
       <a href="#about">About</a>
       <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact">Early access</a>
     </nav>
     <span class="hdr-spacer" aria-hidden="true"></span>
   </div>
@@ -224,70 +213,51 @@
 <main>
 
   <section id="home" class="page logo-stage" aria-label="Noodle Mind">
-    <!-- Logo: Orbit monogram (option 05, chosen by Logan 2026-11-10). PLACEHOLDER: the Mentis Veritas Orbit monogram is reused until a Noodle Mind mark is designed. Original: an M for Mentis whose middle is a blue V for Veritas,
-         with one tilted orbit and a blue node. Where the front of the orbit crosses the M's right leg, a thin black stroke clipped to the leg makes the gap. Header mark and favicon use the M alone. -->
+    <!-- Logo (Logan, 2026-11-19): a ball of spaghetti drifting in a round window of space, drawn on canvas by the script below. -->
     <div class="home-intro">
     <div class="home-logo">
-    <svg class="logo" viewBox="0 0 200 200" role="img" aria-labelledby="logo-title">
-      <title id="logo-title">Noodle Mind</title>
-      <defs>
-        <clipPath id="mv-v"><rect x="60.5" y="0" width="79" height="200"/></clipPath>
-        <filter id="mv-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
-        <clipPath id="mv-leg"><rect x="127.65" y="104" width="6.3" height="28.2"/></clipPath>
-        <clipPath id="mv-front-half"><rect x="-40" y="100" width="280" height="140" transform="rotate(-18 100 100)"/></clipPath>
-      </defs>
-      <g transform="rotate(-18 100 100)"><ellipse class="mv-draw mv-orbit" cx="100" cy="100" rx="92" ry="30" fill="none" stroke="#ffffff" stroke-opacity=".32" stroke-width="1.5"/></g>
-      <g class="mv-node"><g transform="rotate(-18 100 100)"><circle r="5" fill="#7fa6e0"><animateMotion dur="9s" repeatCount="indefinite" path="M8 100 A92 30 0 1 1 192 100 A92 30 0 1 1 8 100"/></circle></g></g>
-      <g transform="translate(100 100) scale(.7) translate(-100 -100)">
-        <g class="mv-halo"><g class="mv-breathe"><path d="M62 63.3 L100 122 L138 63.3" fill="none" stroke="#7fa6e0" stroke-width="10" filter="url(#mv-glow)"/></g></g>
-        <path class="mv-draw mv-m" d="M56 146 V54 L100 122 L144 54 V146" fill="none" stroke="#ffffff" stroke-width="9" stroke-miterlimit="6"/>
-        <g clip-path="url(#mv-v)"><path class="mv-draw mv-v" d="M56 54 L100 122 L144 54" fill="none" stroke="#7fa6e0" stroke-width="9.6" stroke-miterlimit="6"/></g>
-      </g>
-      <g clip-path="url(#mv-leg)"><path class="mv-draw mv-front" d="M8 100 A92 30 0 0 0 192 100" transform="rotate(-18 100 100)" fill="none" stroke="#000000" stroke-width="4.2"/></g>
-      <g transform="rotate(-18 100 100)"><path class="mv-draw mv-front" d="M8 100 A92 30 0 0 0 192 100" fill="none" stroke="#ffffff" stroke-opacity=".7" stroke-width="1.5"/></g>
-      <g class="mv-node" clip-path="url(#mv-front-half)"><g transform="rotate(-18 100 100)"><circle r="5" fill="#7fa6e0"><animateMotion dur="9s" repeatCount="indefinite" path="M8 100 A92 30 0 1 1 192 100 A92 30 0 1 1 8 100"/></circle></g></g>
-    </svg>
+    <canvas class="logo" id="noodle-logo" width="600" height="600" role="img" aria-label="Noodle Mind: a ball of spaghetti turning in space"></canvas>
     </div>
     <div class="home-text">
       <h1>Use Your Noodle.</h1>
-      <p class="tagline">High IQ, powered by AI.</p>
-      <div class="actions"><a class="btn primary" href="#services">See what we do</a></div>
+      <p class="tagline">Bring an idea. Leave with a better one.</p>
+      <div class="actions"><a class="btn primary" href="#services">See what it does</a></div>
     </div>
     </div>
   </section>
 
   <section id="services" class="page" aria-labelledby="services-h">
     <div class="wrap">
-      <h2 id="services-h">High IQ, Powered by AI</h2>
-      <div class="tabs" role="tablist" aria-label="Services">
-        <button role="tab" id="tab-guidance" aria-selected="true" aria-controls="panel-guidance">Guidance</button>
-        <button role="tab" id="tab-systems" aria-selected="false" aria-controls="panel-systems" tabindex="-1">Custom systems</button>
-        <button role="tab" id="tab-verify" aria-selected="false" aria-controls="panel-verify" tabindex="-1">Verify</button>
+      <h2 id="services-h">An AI that makes your ideas better.</h2>
+      <div class="tabs" role="tablist" aria-label="What it does">
+        <button role="tab" id="tab-guidance" aria-selected="true" aria-controls="panel-guidance">Sharpen</button>
+        <button role="tab" id="tab-systems" aria-selected="false" aria-controls="panel-systems" tabindex="-1">Challenge</button>
+        <button role="tab" id="tab-verify" aria-selected="false" aria-controls="panel-verify" tabindex="-1">Shape</button>
       </div>
 
       <div class="panel" role="tabpanel" id="panel-guidance" aria-labelledby="tab-guidance">
-        <div class="col"><h4>What we do</h4><p>Map where AI pays off, rank the moves, and identify the risks. We tailor and identify the best options for your business.</p></div>
+        <div class="col"><h4>What it does</h4><p>Tell it the idea the way you would tell a friend. It finds the one sentence underneath, the thing you are really trying to do, and hands it back clearer than you said it.</p></div>
       </div>
 
       <div class="panel" role="tabpanel" id="panel-systems" aria-labelledby="tab-systems" hidden>
-        <div class="col"><h4>What we do</h4><p>Design assistants that think alongside your teams, pipelines that make sense of your documents, and connections to the tools you already run. Prove it on one problem, then widen.</p></div>
+        <div class="col"><h4>What it does</h4><p>It asks the questions you skipped. Who is this for, what breaks first, what would make someone say no. The weak parts show up early, while they are still cheap to fix.</p></div>
       </div>
 
       <div class="panel" role="tabpanel" id="panel-verify" aria-labelledby="tab-verify" hidden>
-        <div class="col"><h4>What we do</h4><p>Evaluate against real cases as they grow. Watch drift, cost and failure. Test every change before production. Keep the trail that lets someone say why.</p></div>
+        <div class="col"><h4>What it does</h4><p>It turns the stronger version into something you can act on. A name, a pitch, a first step, a plan. Still your idea. Just better.</p></div>
       </div>
     </div>
   </section>
 
   <section id="process" class="page" aria-labelledby="process-h">
     <div class="wrap">
-      <h2 id="process-h">AI Systems designed for the way you work</h2>
+      <h2 id="process-h">Your idea, five steps better.</h2>
       <ol class="steps">
-        <li><div><h3>Listen</h3><p>We understand your business needs by listening to what makes your business special.</p></div></li>
-        <li><div><h3>Design</h3><p>We shape the system around how you already work using the most advanced technology.</p></div></li>
-        <li><div><h3>Test</h3><p>We rigorously test the system while ensuring security is never compromised.</p></div></li>
-        <li><div><h3>Deploy</h3><p>We put it to work inside the tools you already use.</p></div></li>
-        <li><div><h3>Continuous improvement</h3><p>We watch how it performs and keep making it better.</p></div></li>
+        <li><div><h3>Tell it</h3><p>Type the idea as it is in your head. Rough is fine. Half-finished is fine.</p></div></li>
+        <li><div><h3>It listens</h3><p>Noodle Mind works out what you actually mean and plays it back to you.</p></div></li>
+        <li><div><h3>It pushes back</h3><p>It asks the hard questions and shows you where the idea bends.</p></div></li>
+        <li><div><h3>It builds it up</h3><p>You get a sharper version, with the reasons for every change.</p></div></li>
+        <li><div><h3>You decide</h3><p>Keep what you like, drop what you do not. Your judgment stays in charge.</p></div></li>
       </ol>
     </div>
   </section>
@@ -295,19 +265,19 @@
   <section id="about" class="page hero" aria-labelledby="about-h">
     <div class="wrap">
       <h1 id="about-h">Use Your Noodle.</h1>
-      <p class="lede"><strong>High IQ, powered by AI.</strong> We bring sharper thinking to where AI belongs in your business, and we build the systems to make it work. For companies of every size.</p>
+      <p class="lede"><strong>Your idea, powered by AI.</strong> Noodle Mind is an AI built for one job: taking the idea in your head and making it better. For founders, teams, students and anyone with a half-formed plan.</p>
       <div class="actions">
-        <a class="btn primary" href="#contact">Start a conversation</a>
-        <a class="btn" href="#services">See what we do</a>
+        <a class="btn primary" href="#contact">Get early access</a>
+        <a class="btn" href="#services">See what it does</a>
       </div>
-      <h2>We are independent by design.</h2>
-      <p class="lede">Noodle Mind is led by Logan Kenney. We put human judgment first and use AI as the multiplier. We take no reseller margins and no referral fees, and your data never trains anything for anyone else. The name is a reminder to use your noodle: human judgment first, every time.</p>
+      <h2>Why the name.</h2>
+      <p class="lede">To use your noodle is to think before you act. Noodle Mind is a second mind for exactly that moment. It does not have ideas for you. It takes yours and asks better questions than you would ask yourself. Built by Logan Kenney. Your ideas stay yours and never train anything for anyone else.</p>
       <div class="grid">
-        <div class="card"><h3>Intelligent</h3><p>We think first, then automate.</p></div>
-        <div class="card"><h3>Independent</h3><p>We sell advice, nothing else.</p></div>
-        <div class="card"><h3>Measurable</h3><p>We agree the test before we start.</p></div>
-        <div class="card"><h3>Explainable</h3><p>We can always say why.</p></div>
-        <div class="card"><h3>Yours</h3><p>We leave you owning everything.</p></div>
+        <div class="card"><h3>Sharper</h3><p>Every idea comes back clearer.</p></div>
+        <div class="card"><h3>Honest</h3><p>It tells you where the idea bends.</p></div>
+        <div class="card"><h3>Explainable</h3><p>Every change comes with a reason.</p></div>
+        <div class="card"><h3>Private</h3><p>Your ideas never train anything.</p></div>
+        <div class="card"><h3>Yours</h3><p>You decide what stays.</p></div>
       </div>
     </div>
   </section>
@@ -316,11 +286,12 @@
     <div class="wrap">
       <h2 id="faq-h">What we get asked first.</h2>
       <div class="faq-list">
-        <details><summary>Are we too small for this?</summary><p>No. We built the working session for exactly that. The best AI projects are often small, specific and cheap to prove.</p></details>
-        <details><summary>Which AI vendors do you use?</summary><p>Whichever fits your data, budget and risk. We put the choice, and the reasons, in writing.</p></details>
-        <details><summary>What happens to our data?</summary><p>We keep it where it belongs, under no-training terms, and we delete working copies and confirm it in writing when we are done.</p></details>
-        <details><summary>Do you work with companies outside your country?</summary><p>Yes. We work remotely with clients wherever they are, and we review against the markets you actually serve.</p></details>
-        <details><summary>Who owns what we build?</summary><p>You do, on payment. We license anything of ours inside it to you permanently.</p></details>
+        <details><summary>What is Noodle Mind?</summary><p>An AI that takes your idea and makes it better. You bring the idea. It brings the questions, the pushback and the sharper version.</p></details>
+        <details><summary>Does it have ideas for me?</summary><p>No. It works on yours. The thinking stays human. Noodle Mind makes it sharper.</p></details>
+        <details><summary>Who is it for?</summary><p>Anyone with an idea and no one to test it on. Founders, teams, students, writers, makers.</p></details>
+        <details><summary>What happens to my ideas?</summary><p>They stay yours. Nothing you type trains anything for anyone else, and you can delete it when you are done.</p></details>
+        <details><summary>Is it a chatbot?</summary><p>It talks, but it is built for one job. It will not write your essay or plan your holiday. It will make your idea better.</p></details>
+        <details><summary>When can I use it?</summary><p>Early access is opening soon. Leave your email and the idea you are working on, and you are on the list.</p></details>
       </div>
     </div>
   </section>
@@ -328,12 +299,12 @@
   <section id="contact" class="page" aria-labelledby="contact-h">
     <div class="wrap">
       <div class="status">
-        <h2 id="contact-h">Tell us what you are trying to do. We will tell you what we would do.</h2>
-        <p class="muted">A sentence or two about your business and the problem. We reply within two business days.</p>
+        <h2 id="contact-h">Have an idea? Get early access.</h2>
+        <p class="muted">Send us the idea you are working on, in a sentence. We reply within two business days, and you are first in line.</p>
         <div class="contact">
           <code id="email">hello@noodlemind.com</code>
           <button class="btn primary" type="button" id="copy-btn">Copy address</button>
-          <a class="btn" href="mailto:hello@noodlemind.com?subject=Noodle%20Mind%20enquiry">Open in mail</a>
+          <a class="btn" href="mailto:hello@noodlemind.com?subject=Noodle%20Mind%20early%20access">Open in mail</a>
           <span class="note" id="copy-note" aria-live="polite"></span>
         </div>
       </div>
@@ -346,9 +317,9 @@
   <div class="wrap">
     <span>© 2026 Noodle Mind LLC</span>
     <nav aria-label="Footer">
-      <a href="#services">Services</a>
+      <a href="#services">What it does</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact">Early access</a>
       <a href="mailto:hello@noodlemind.com">hello@noodlemind.com</a>
     </nav>
   </div>
@@ -392,9 +363,64 @@
     window.addEventListener('hashchange', show);
     show();
 
-    // Reduced motion: hold the orbit node still (CSS already skips the draw-in)
-    var logo = document.querySelector('.logo');
-    if (logo && logo.pauseAnimations && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) logo.pauseAnimations();
+    // Logo: a ball of spaghetti in space. Strands are smooth random walks on a sphere, drawn back to front as the ball turns.
+    (function () {
+      var c = document.getElementById('noodle-logo'); if (!c || !c.getContext) return;
+      var ctx = c.getContext('2d'), W = c.width, H = c.height, R = W * 0.36;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+      var stars = []; for (var i = 0; i < 46; i++) stars.push({ x: rnd(), y: rnd(), r: 0.6 + rnd() * 1.6, p: rnd() * 6.28, s: 0.4 + rnd() });
+      var strands = [], tones = ['#f7c452', '#f2b640', '#eaa72c', '#fbd275'];
+      for (var k = 0; k < 20; k++) {
+        var th = rnd() * 6.283, ph = Math.acos(2 * rnd() - 1);
+        var p = [Math.sin(ph) * Math.cos(th), Math.sin(ph) * Math.sin(th), Math.cos(ph)];
+        var a = [rnd() - .5, rnd() - .5, rnd() - .5], d = cross(p, a); d = norm(d);
+        var pts = [], n = 120 + Math.floor(rnd() * 60), turn = 0.03 + rnd() * 0.025, wob = rnd() * 6.28;
+        for (var j = 0; j < n; j++) {
+          pts.push(p);
+          var t = cross(p, d), tilt = Math.sin(j * turn + wob) * 0.55;
+          var step = norm([d[0] + t[0] * tilt * 0.4, d[1] + t[1] * tilt * 0.4, d[2] + t[2] * tilt * 0.4]);
+          var q = norm([p[0] + step[0] * 0.07, p[1] + step[1] * 0.07, p[2] + step[2] * 0.07]);
+          d = norm(sub(q, p)); p = q;
+        }
+        strands.push({ pts: pts, w: 6 + rnd() * 4, tone: tones[k % tones.length] });
+      }
+      function cross(a, b) { return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; }
+      function sub(a, b) { return [a[0]-b[0], a[1]-b[1], a[2]-b[2]]; }
+      function norm(v) { var l = Math.sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]) || 1; return [v[0]/l, v[1]/l, v[2]/l]; }
+      function draw(t) {
+        var ay = t * 0.00035, ax = 0.45 + Math.sin(t * 0.00021) * 0.25;
+        var cy = Math.cos(ay), sy = Math.sin(ay), cx = Math.cos(ax), sx = Math.sin(ax);
+        ctx.clearRect(0, 0, W, H);
+        // space
+        for (var i = 0; i < stars.length; i++) { var st = stars[i], tw = 0.55 + 0.45 * Math.sin(t * 0.0012 * st.s + st.p);
+          ctx.globalAlpha = tw; ctx.fillStyle = '#fff7e8'; ctx.beginPath(); ctx.arc(st.x * W, st.y * H, st.r, 0, 6.283); ctx.fill(); }
+        ctx.globalAlpha = 1;
+        // one small planet
+        ctx.fillStyle = '#f26a4b'; ctx.beginPath(); ctx.arc(W * 0.8 + Math.sin(t * 0.0002) * 8, H * 0.22, 9, 0, 6.283); ctx.fill();
+        ctx.strokeStyle = 'rgba(255,247,232,.55)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(W * 0.8 + Math.sin(t * 0.0002) * 8, H * 0.22, 17, 5, -0.4, 0, 6.283); ctx.stroke();
+        // strands, back to front
+        var segs = [];
+        for (var k = 0; k < strands.length; k++) { var sd = strands[k], prev = null;
+          for (var j = 0; j < sd.pts.length; j++) { var v = sd.pts[j];
+            var x1 = v[0] * cy + v[2] * sy, z1 = -v[0] * sy + v[2] * cy, y1 = v[1];
+            var y2 = y1 * cx - z1 * sx, z2 = y1 * sx + z1 * cx;
+            var sc = 1 / (2.4 - z2 * 0.5), pt = { x: W / 2 + x1 * R * sc * 1.9, y: H / 2 + y2 * R * sc * 1.9, z: z2, s: sc };
+            if (prev) segs.push({ a: prev, b: pt, z: (prev.z + pt.z) / 2, w: sd.w, tone: sd.tone });
+            prev = pt; } }
+        segs.sort(function (a, b) { return a.z - b.z; });
+        ctx.lineCap = 'round';
+        for (var i = 0; i < segs.length; i++) { var g = segs[i], depth = (g.z + 1) / 2;
+          ctx.strokeStyle = g.tone; ctx.globalAlpha = 0.35 + depth * 0.65; ctx.lineWidth = g.w * (0.6 + depth * 0.7);
+          ctx.beginPath(); ctx.moveTo(g.a.x, g.a.y); ctx.lineTo(g.b.x, g.b.y); ctx.stroke(); }
+        ctx.globalAlpha = 1;
+      }
+      if (reduce) { draw(4000); return; }
+      var hidden = false;
+      document.addEventListener('visibilitychange', function () { hidden = document.hidden; if (!hidden) requestAnimationFrame(loop); });
+      function loop(t) { if (hidden) return; draw(t); requestAnimationFrame(loop); }
+      requestAnimationFrame(loop);
+    })();
 
     // Copy email
     var btn = document.getElementById('copy-btn');
