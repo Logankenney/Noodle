@@ -70,16 +70,16 @@
   .home-text h1 { font-size: clamp(2.6rem, 8vw, 4.4rem); }
   .home-text .tagline { font-size: 1.25rem; font-weight: 500; color: var(--fg); line-height: 1.35; margin: 0; }
   .home-text .actions { margin-top: .25rem; }
-  /* Logo (Logan, 2026-11-19): a ball of spaghetti turning slowly in a small round window of space. Canvas-drawn; a static frame under reduced motion. */
+  /* Logo (Logan, 2026-11-19 04:34): crayon-drawn space, then one cooked noodle drops in and chases its tail inside a round restraint while it turns. Canvas-drawn; a static frame under reduced motion. */
   .logo { width: min(62vw, 300px); height: auto; aspect-ratio: 1; display: block; position: relative; z-index: 1; border-radius: 50%; background: var(--space); will-change: transform; }
   .home-logo::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(96vw, 560px); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; will-change: transform, opacity;
-    background: radial-gradient(circle, rgba(233,162,28,.32) 0%, rgba(233,162,28,.14) 30%, rgba(242,106,75,.06) 48%, transparent 68%); animation: glowin 2s ease .4s both; }
+    background: radial-gradient(circle, rgba(233,162,28,.32) 0%, rgba(233,162,28,.14) 30%, rgba(242,106,75,.06) 48%, transparent 68%); animation: glowin 2s ease 2.6s both; }
   @keyframes glowin { from { opacity: 0; } to { opacity: 1; } }
   @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
   @media (prefers-reduced-motion: no-preference) {
     .logo { animation: float 7s ease-in-out 1s infinite; }
-    .home-logo::before { animation: glowin 2s ease .4s both, pulse 7s ease-in-out 2s infinite; }
-    .home-text { animation: fadein .8s ease 1.2s both; }
+    .home-logo::before { animation: glowin 2s ease 2.6s both, pulse 7s ease-in-out 4s infinite; }
+    .home-text { animation: fadein .8s ease 3.4s both; }
     @keyframes float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
     @keyframes pulse { 0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 50% { opacity: .8; transform: translate(-50%, -50%) scale(1.06); } }
   }
@@ -213,10 +213,10 @@
 <main>
 
   <section id="home" class="page logo-stage" aria-label="Noodle Mind">
-    <!-- Logo (Logan, 2026-11-19): a ball of spaghetti drifting in a round window of space, drawn on canvas by the script below. -->
+    <!-- Logo (Logan, 2026-11-19 04:34): crayon stars and planets are drawn, then a cooked noodle drops in and chases its own tail inside a round restraint, drawn on canvas by the script below. -->
     <div class="home-intro">
     <div class="home-logo">
-    <canvas class="logo" id="noodle-logo" width="600" height="600" role="img" aria-label="Noodle Mind: a ball of spaghetti turning in space"></canvas>
+    <canvas class="logo" id="noodle-logo" width="600" height="600" role="img" aria-label="Noodle Mind: a crayon-drawn noodle chasing its tail among stars and planets"></canvas>
     </div>
     <div class="home-text">
       <h1>Use Your Noodle.</h1>
@@ -271,7 +271,7 @@
         <a class="btn" href="#services">See what it does</a>
       </div>
       <h2>Why the name.</h2>
-      <p class="lede">To use your noodle is to think before you act. Noodle Mind is a second mind for exactly that moment. It does not have ideas for you. It takes yours and asks better questions than you would ask yourself. Built by Logan Kenney. Your ideas stay yours and never train anything for anyone else.</p>
+      <p class="lede">To use your noodle is to think before you act. Noodle Mind is a second mind for exactly that moment. It does not have ideas for you. It takes yours and asks better questions than you would ask yourself. Your ideas stay yours and never train anything for anyone else.</p>
       <div class="grid">
         <div class="card"><h3>Sharper</h3><p>Every idea comes back clearer.</p></div>
         <div class="card"><h3>Honest</h3><p>It tells you where the idea bends.</p></div>
@@ -363,63 +363,120 @@
     window.addEventListener('hashchange', show);
     show();
 
-    // Logo: a ball of spaghetti in space. Strands are smooth random walks on a sphere, drawn back to front as the ball turns.
+    // Logo (Logan, 2026-11-19 04:34): crayon-drawn space. Stars and planets are drawn first, stroke by stroke; then one cooked,
+    // flexible noodle drops in from above and chases its own tail inside a round restraint while the whole thing keeps turning.
     (function () {
       var c = document.getElementById('noodle-logo'); if (!c || !c.getContext) return;
-      var ctx = c.getContext('2d'), W = c.width, H = c.height, R = W * 0.36;
+      var ctx = c.getContext('2d'), W = c.width, H = c.height, CX = W / 2, CY = H / 2, R = W * 0.3;
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
-      var stars = []; for (var i = 0; i < 46; i++) stars.push({ x: rnd(), y: rnd(), r: 0.6 + rnd() * 1.6, p: rnd() * 6.28, s: 0.4 + rnd() });
-      var strands = [], tones = ['#f7c452', '#f2b640', '#eaa72c', '#fbd275'];
-      for (var k = 0; k < 20; k++) {
-        var th = rnd() * 6.283, ph = Math.acos(2 * rnd() - 1);
-        var p = [Math.sin(ph) * Math.cos(th), Math.sin(ph) * Math.sin(th), Math.cos(ph)];
-        var a = [rnd() - .5, rnd() - .5, rnd() - .5], d = cross(p, a); d = norm(d);
-        var pts = [], n = 120 + Math.floor(rnd() * 60), turn = 0.03 + rnd() * 0.025, wob = rnd() * 6.28;
-        for (var j = 0; j < n; j++) {
-          pts.push(p);
-          var t = cross(p, d), tilt = Math.sin(j * turn + wob) * 0.55;
-          var step = norm([d[0] + t[0] * tilt * 0.4, d[1] + t[1] * tilt * 0.4, d[2] + t[2] * tilt * 0.4]);
-          var q = norm([p[0] + step[0] * 0.07, p[1] + step[1] * 0.07, p[2] + step[2] * 0.07]);
-          d = norm(sub(q, p)); p = q;
+      var seed = 11; function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+      var CREAM = '#fff7e8', GOLD = '#f2b640', GOLD2 = '#fbd275', TOMATO = '#f26a4b', SKY = '#9ad0f0', LILAC = '#c9b6f2';
+
+      // Crayon stroke: three wobbly passes, uneven alpha, a lighter streak on top. The wobble is fixed per stroke so nothing flickers.
+      function crayon(pts, width, color, alpha, jit, reveal) {
+        var n = Math.max(2, Math.floor(pts.length * (reveal == null ? 1 : reveal)));
+        if (n < 2) return;
+        for (var pass = 0; pass < 3; pass++) {
+          ctx.beginPath();
+          for (var i = 0; i < n; i++) { var j = jit[(i * 3 + pass) % jit.length];
+            var x = pts[i].x + j[0] * width * 0.22, y = pts[i].y + j[1] * width * 0.22;
+            if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+          ctx.strokeStyle = color; ctx.globalAlpha = alpha * (pass === 1 ? 0.7 : 0.5); ctx.lineWidth = width * (0.75 + pass * 0.12);
+          ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.stroke();
         }
-        strands.push({ pts: pts, w: 6 + rnd() * 4, tone: tones[k % tones.length] });
+        ctx.globalAlpha = 1;
       }
-      function cross(a, b) { return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; }
-      function sub(a, b) { return [a[0]-b[0], a[1]-b[1], a[2]-b[2]]; }
-      function norm(v) { var l = Math.sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]) || 1; return [v[0]/l, v[1]/l, v[2]/l]; }
+      var jitter = []; for (var i = 0; i < 64; i++) jitter.push([rnd() * 2 - 1, rnd() * 2 - 1]);
+      function wobblyCircle(cx, cy, r, k) { var pts = []; for (var i = 0; i <= 72; i++) { var a = i / 72 * 6.283, w = 1 + Math.sin(a * 3 + k) * 0.025 + Math.sin(a * 7 + k * 2) * 0.012;
+        pts.push({ x: cx + Math.cos(a) * r * w, y: cy + Math.sin(a) * r * w }); } return pts; }
+      function line(x1, y1, x2, y2) { var pts = []; for (var i = 0; i <= 8; i++) pts.push({ x: x1 + (x2 - x1) * i / 8, y: y1 + (y2 - y1) * i / 8 }); return pts; }
+
+      // Space: 14 crayon stars (a small cross, then a dot), three planets. Each has a moment in the first seconds when it gets drawn.
+      var stars = []; for (var i = 0; i < 14; i++) { var a = rnd() * 6.283, d = R * (1.25 + rnd() * 0.45);
+        stars.push({ x: CX + Math.cos(a) * Math.min(d, R * 1.55), y: CY + Math.sin(a) * Math.min(d, R * 1.55) * 0.98, s: 5 + rnd() * 6, t0: 150 + i * 110, rot: rnd() * 3, color: i % 4 === 0 ? GOLD2 : CREAM, p: rnd() * 6.28 }); }
+      var planets = [
+        { x: CX + R * 0.95, y: CY - R * 0.95, r: 24, color: TOMATO, ring: true, t0: 900, hatch: 5 },
+        { x: CX - R * 1.22, y: CY + R * 0.62, r: 16, color: SKY, ring: false, t0: 1500, hatch: 4 },
+        { x: CX - R * 0.72, y: CY - R * 1.18, r: 10, color: LILAC, ring: false, t0: 2000, hatch: 3 }
+      ];
+
+      // The noodle: a head that wanders inside the sphere, and a body that follows it link by link. It starts above, out of view.
+      var N = 340, SEG = R * 0.034, body = [], head = { p: [0, -R * 2.6, 0], v: [0, 0, 0] }, phase = 'wait', landed = 0, inside = false;
+      for (var i = 0; i < N; i++) body.push([0, -R * 2.6 - i * SEG, 0]);
+      var DROP_AT = 2700, TEXT_AT = 3400;
+      function stepNoodle(t, dt) {
+        var p = head.p, v = head.v, RIN = R * 0.9;
+        if (phase === 'wait') { if (t >= DROP_AT) { phase = 'drop'; v[1] = 0.6; } else return; }
+        if (phase === 'drop') { v[1] += 0.045 * dt; v[0] = Math.sin(t * 0.005) * 0.9; v[2] = Math.cos(t * 0.0037) * 0.6; }
+        else {
+          // chase its own tail: steer toward a point far back along the body, plus a slow wander, at a steady speed
+          // the tail pulls a little, a slow roaming point pulls more, and a wobble keeps the path loose, so it loops all round the sphere
+          var tail = body[N - 1], k = 0.0004 * dt, g = 0.0016 * dt, tt = t * 0.0005;
+          var rx = Math.sin(tt) * RIN * 0.8, ry = Math.sin(tt * 1.3 + 1) * RIN * 0.8, rz = Math.cos(tt * 0.8) * RIN * 0.8;
+          v[0] += (tail[0] - p[0]) * k + (rx - p[0]) * g + Math.sin(t * 0.0021 + 1) * 0.14; v[1] += (tail[1] - p[1]) * k + (ry - p[1]) * g + Math.cos(t * 0.0017) * 0.14; v[2] += (tail[2] - p[2]) * k + (rz - p[2]) * g + Math.sin(t * 0.0019 + 2) * 0.14;
+          var sp = Math.sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]) || 1, want = 3.1 * dt; v[0] *= want / sp; v[1] *= want / sp; v[2] *= want / sp;
+        }
+        p[0] += v[0]; p[1] += v[1]; p[2] += v[2];
+        var d = Math.sqrt(p[0]*p[0]+p[1]*p[1]+p[2]*p[2]);
+        if (d < RIN) inside = true; // it drops in through the top; the restraint only holds once the head is inside
+        if (inside && d > RIN) { // hit the restraint: push back in and bounce off the wall
+          var nx = p[0]/d, ny = p[1]/d, nz = p[2]/d, dot = v[0]*nx+v[1]*ny+v[2]*nz;
+          v[0] -= 1.7 * dot * nx; v[1] -= 1.7 * dot * ny; v[2] -= 1.7 * dot * nz;
+          p[0] = nx * RIN; p[1] = ny * RIN; p[2] = nz * RIN;
+          if (phase === 'drop') { phase = 'chase'; landed = t; }
+        }
+        body[0] = [p[0], p[1], p[2]];
+        for (var i = 1; i < N; i++) { var a = body[i-1], b = body[i], dx = b[0]-a[0], dy = b[1]-a[1], dz = b[2]-a[2], l = Math.sqrt(dx*dx+dy*dy+dz*dz) || 1;
+          var q = [a[0] + dx / l * SEG, a[1] + dy / l * SEG, a[2] + dz / l * SEG];
+          if (phase === 'chase') { var qd = Math.sqrt(q[0]*q[0]+q[1]*q[1]+q[2]*q[2]); if (qd > RIN * 1.04) { q[0] *= RIN * 1.04 / qd; q[1] *= RIN * 1.04 / qd; q[2] *= RIN * 1.04 / qd; } }
+          body[i] = q; }
+      }
+      function project(v, cy, sy, cx, sx) { var x1 = v[0]*cy + v[2]*sy, z1 = -v[0]*sy + v[2]*cy, y1 = v[1];
+        var y2 = y1*cx - z1*sx, z2 = y1*sx + z1*cx, sc = 1 / (2.6 - z2 / R * 0.5);
+        return { x: CX + x1 * sc * 2.1, y: CY + y2 * sc * 2.1, z: z2 / R }; }
+
       function draw(t) {
-        var ay = t * 0.00035, ax = 0.45 + Math.sin(t * 0.00021) * 0.25;
-        var cy = Math.cos(ay), sy = Math.sin(ay), cx = Math.cos(ax), sx = Math.sin(ax);
         ctx.clearRect(0, 0, W, H);
-        // space
-        for (var i = 0; i < stars.length; i++) { var st = stars[i], tw = 0.55 + 0.45 * Math.sin(t * 0.0012 * st.s + st.p);
-          ctx.globalAlpha = tw; ctx.fillStyle = '#fff7e8'; ctx.beginPath(); ctx.arc(st.x * W, st.y * H, st.r, 0, 6.283); ctx.fill(); }
-        ctx.globalAlpha = 1;
-        // one small planet
-        ctx.fillStyle = '#f26a4b'; ctx.beginPath(); ctx.arc(W * 0.8 + Math.sin(t * 0.0002) * 8, H * 0.22, 9, 0, 6.283); ctx.fill();
-        ctx.strokeStyle = 'rgba(255,247,232,.55)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(W * 0.8 + Math.sin(t * 0.0002) * 8, H * 0.22, 17, 5, -0.4, 0, 6.283); ctx.stroke();
-        // strands, back to front
-        var segs = [];
-        for (var k = 0; k < strands.length; k++) { var sd = strands[k], prev = null;
-          for (var j = 0; j < sd.pts.length; j++) { var v = sd.pts[j];
-            var x1 = v[0] * cy + v[2] * sy, z1 = -v[0] * sy + v[2] * cy, y1 = v[1];
-            var y2 = y1 * cx - z1 * sx, z2 = y1 * sx + z1 * cx;
-            var sc = 1 / (2.4 - z2 * 0.5), pt = { x: W / 2 + x1 * R * sc * 1.9, y: H / 2 + y2 * R * sc * 1.9, z: z2, s: sc };
-            if (prev) segs.push({ a: prev, b: pt, z: (prev.z + pt.z) / 2, w: sd.w, tone: sd.tone });
-            prev = pt; } }
-        segs.sort(function (a, b) { return a.z - b.z; });
-        ctx.lineCap = 'round';
-        for (var i = 0; i < segs.length; i++) { var g = segs[i], depth = (g.z + 1) / 2;
-          ctx.strokeStyle = g.tone; ctx.globalAlpha = 0.35 + depth * 0.65; ctx.lineWidth = g.w * (0.6 + depth * 0.7);
-          ctx.beginPath(); ctx.moveTo(g.a.x, g.a.y); ctx.lineTo(g.b.x, g.b.y); ctx.stroke(); }
-        ctx.globalAlpha = 1;
+        var ease = function (t0, dur) { return Math.max(0, Math.min(1, (t - t0) / dur)); };
+        // stars: cross strokes drawn, then a dot
+        for (var i = 0; i < stars.length; i++) { var st = stars[i], e = ease(st.t0, 500); if (e <= 0) continue;
+          var tw = phase === 'chase' ? 0.75 + 0.25 * Math.sin(t * 0.002 + st.p) : 1;
+          var c1 = Math.cos(st.rot), s1 = Math.sin(st.rot), r = st.s;
+          crayon(line(st.x - c1 * r, st.y - s1 * r, st.x + c1 * r, st.y + s1 * r), 3.2, st.color, tw, jitter, Math.min(1, e * 2));
+          if (e > 0.5) crayon(line(st.x + s1 * r, st.y - c1 * r, st.x - s1 * r, st.y + c1 * r), 3.2, st.color, tw, jitter, (e - 0.5) * 2);
+          if (e >= 1) { ctx.globalAlpha = tw; ctx.fillStyle = st.color; ctx.beginPath(); ctx.arc(st.x, st.y, 2.2, 0, 6.283); ctx.fill(); ctx.globalAlpha = 1; } }
+        // planets: a wobbly outline drawn round, then crayon hatching inside, then a ring
+        for (var i = 0; i < planets.length; i++) { var pl = planets[i], e = ease(pl.t0, 900); if (e <= 0) continue;
+          var drift = Math.sin(t * 0.0003 + i) * 4, px = pl.x + drift, py = pl.y;
+          crayon(wobblyCircle(px, py, pl.r, i * 1.7), 4.5, pl.color, 1, jitter, Math.min(1, e * 1.6));
+          if (e > 0.55) { var h = (e - 0.55) / 0.45; for (var k = 0; k < pl.hatch; k++) { if (k / pl.hatch > h) break;
+            var yy = py - pl.r + (k + 0.7) * (2 * pl.r / (pl.hatch + 0.4)), half = Math.sqrt(Math.max(0, pl.r * pl.r - (yy - py) * (yy - py))) * 0.85;
+            crayon(line(px - half, yy + 3, px + half, yy - 3), 3.5, pl.color, 0.55, jitter, 1); } }
+          if (pl.ring && e >= 1) { var rr = []; for (var k = 0; k <= 36; k++) { var a = k / 36 * 6.283; rr.push({ x: px + Math.cos(a) * pl.r * 1.9, y: py + Math.sin(a) * pl.r * 0.55 + Math.cos(a) * 6 }); }
+            crayon(rr, 3.2, CREAM, 0.8, jitter, Math.min(1, ease(pl.t0 + 900, 500))); } }
+        // the restraint is invisible (Logan, 2026-11-19 04:44): the noodle simply bounces off it
+        // the noodle, back to front, thicker and brighter in front
+        if (phase !== 'wait') {
+          var ay = (t - DROP_AT) * 0.00035, ax = 0.45 + Math.sin(t * 0.00021) * 0.25, cy = Math.cos(ay), sy = Math.sin(ay), cx = Math.cos(ax), sx = Math.sin(ax);
+          var segs = [], prev = null;
+          for (var i = 0; i < N; i++) { var q = project(body[i], cy, sy, cx, sx); if (prev) segs.push({ a: prev, b: q, z: (prev.z + q.z) / 2, i: i }); prev = q; }
+          segs.sort(function (a, b) { return a.z - b.z; });
+          for (var i = 0; i < segs.length; i++) { var g = segs[i], depth = Math.max(0, Math.min(1, (g.z + 1) / 2)), w = 14 * (0.55 + depth * 0.6);
+            var j1 = jitter[g.i % 64], j2 = jitter[(g.i + 1) % 64];
+            for (var pass = 0; pass < 2; pass++) { ctx.beginPath();
+              ctx.moveTo(g.a.x + j1[0] * (pass ? 2.4 : 0.8), g.a.y + j1[1] * (pass ? 2.4 : 0.8)); ctx.lineTo(g.b.x + j2[0] * (pass ? 2.4 : 0.8), g.b.y + j2[1] * (pass ? 2.4 : 0.8));
+              ctx.strokeStyle = pass ? GOLD2 : GOLD; ctx.globalAlpha = (0.3 + depth * 0.7) * (pass ? 0.35 : 0.85); ctx.lineWidth = pass ? w * 0.45 : w; ctx.lineCap = 'round'; ctx.stroke(); }
+          }
+          ctx.globalAlpha = 1;
+        }
       }
-      if (reduce) { draw(4000); return; }
-      var hidden = false;
-      document.addEventListener('visibilitychange', function () { hidden = document.hidden; if (!hidden) requestAnimationFrame(loop); });
-      function loop(t) { if (hidden) return; draw(t); requestAnimationFrame(loop); }
-      requestAnimationFrame(loop);
+      var last = 0;
+      function frame(t) { if (document.hidden) { last = 0; return; }
+        var dt = last ? Math.min(2.5, (t - last) / 16.7) : 1; last = t;
+        stepNoodle(t, dt); draw(t); requestAnimationFrame(frame); }
+      if (reduce) { for (var t = 0; t < 9000; t += 16.7) stepNoodle(t, 1); draw(9000); return; }
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) requestAnimationFrame(frame); });
+      requestAnimationFrame(frame);
     })();
 
     // Copy email
